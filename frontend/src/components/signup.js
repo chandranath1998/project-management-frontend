@@ -16,7 +16,7 @@ export default function SignUp () {
             e.preventDefault();
 
             console.log(name,email,password);
-            fetch("http://localhost:5000/register",{
+            fetch("http://localhost:5000/createUser",{
                 method:"POST",
                 crossDomain : true,
                 headers: {
@@ -31,7 +31,7 @@ export default function SignUp () {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data, "userRegister");
-                if(data.status == "ok"){
+                if(data.status == true){
                     alert("Registration Successful");
                 }else{
                     alert("Something Went Wrong")
@@ -45,16 +45,17 @@ export default function SignUp () {
                 <form onSubmit ={handleSubmit}>
                     <h3>Sign Up</h3>
                     <div>
-                        Register As <input type='radio'name='Role' value="User"
+                        Register As 
+                         <input style ={{paddingTop : "10px", paddingRight : "10px"}}type='radio'name='Role' value="User"
                         onChange={(e) => setRole(e.target.value)} /> User
                         <input type='radio' name='Role' value= "Manager" 
                         onChange={(e) => setRole(e.target.value)}   /> Manager
                     </div>
                     {role == "Manager" ? (
             <div className="mb-3">
-              <label>Secret Key</label>
+              <label style ={{paddingTop : "10px", paddingRight : "10px"}}>Secret Key</label>  
               <input
-                type="text"
+               style ={{paddingTop : "10px", paddingRight : "10px"}} type="text"
                 className="form-control"
                 placeholder="Secret Key"
                 onChange={(e) => setSecretKey(e.target.value)}
@@ -63,8 +64,8 @@ export default function SignUp () {
           ) : null}
 
 <div className="mb-3">
-            <label>Name</label>
-            <input
+            <label style ={{paddingTop : "10px", paddingRight : "10px"}}>Name : </label>
+            <input style ={{marginBottom : "10px"}}
               type="text"
               className="form-control"
               placeholder="name"
@@ -73,8 +74,8 @@ export default function SignUp () {
           </div>
 
           <div className="mb-3">
-            <label>Email address</label>
-            <input
+            <label style ={{paddingTop : "10px", paddingRight : "10px"}}>Email address</label>
+            <input style ={{marginBottom : "10px"}}
               type="email"
               className="form-control"
               placeholder="Enter email"
@@ -83,8 +84,8 @@ export default function SignUp () {
           </div>
 
           <div className="mb-3">
-            <label>Password</label>
-            <input
+            <label style ={{paddingTop : "10px", paddingRight : "10px"}}>Password : </label>
+            <input style ={{marginBottom : "10px"}}
               type="password"
               className="form-control"
               placeholder="Enter password"
