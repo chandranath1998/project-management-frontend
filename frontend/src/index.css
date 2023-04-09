@@ -105,10 +105,46 @@ td {
 }
 .mb-3{
   color: black;
-  /* background-color: red;
-  margin: 5px; */
+ /* border: 2px solid blue; */
+  margin: 15px 0px 15px 0px;
 }
-/* label{
-  margin: 20px;
-  padding: 20px;
-} */
+
+.form-control{
+  border: 0.5px solid lightgrey;
+  border-radius: 10px;
+   font-size: medium;
+   padding-left: 10px;
+   margin-bottom: 7px;
+   height: 27px;
+   width: 100%;
+   background-color:lightcyan;
+}
+.btn1{
+  border: 0.5px solid lightslategray;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 17px;
+  height: 30px;
+  width: 23%;
+  background-color: lightskyblue;
+}
+.d-grid{
+  display: flex;
+  justify-content: center;
+}
+button:hover {
+  cursor: pointer;
+  width: 50%;
+  color: white;
+  background-color: green;
+}
+.ShowPass{
+  text-align: right;
+}
+h4{
+  color: blueviolet;
+  cursor: pointer;
+  margin: 0%;
+  padding: 0%;
+}
+

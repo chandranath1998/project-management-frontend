@@ -1,20 +1,28 @@
 import React, {Component,useState} from 'react'
+import { isValid, isValidEmail, checkPassword } from '../validations/validation'
+import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 export default function SignUp () {
     const [name,setName] = useState("");
     const [email, setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [role,setRole] = useState("");
-    const [secretKey, setSecretKey] = useState("");
     const [passwordType, setPasswordType] = useState("");
 
-    const handleSubmit = (e) =>{
-        if(role == "Manager" && secretKey != "Chandranath"){
-            e.preventDefault();
-            alert("Invalid Manager");
-        }else{
-            e.preventDefault();
 
+    const togglePassword = () => {
+      if (passwordType === "password") {
+          setPasswordType("text")
+          return;
+      }
+      setPasswordType("password")
+  }
+ 
+
+    const handleSubmit =  (e) =>{
+       
+      
             console.log(name,email,password);
             fetch("http://localhost:5000/createUser",{
                 method:"POST",
@@ -34,11 +42,12 @@ export default function SignUp () {
                 if(data.status == true){
                     alert("Registration Successful");
                 }else{
+                  
                     alert("Something Went Wrong")
                 }
             });
-        }
-    };
+    }
+        
     return (
         <div className="auth-wrapper">
             <div className="auth-inner">
@@ -46,26 +55,16 @@ export default function SignUp () {
                     <h3>Sign Up</h3>
                     <div>
                         Register As 
-                         <input style ={{paddingTop : "10px", paddingRight : "10px"}}type='radio'name='Role' value="User"
+                         <input type='radio'name='Role' value="User"
                         onChange={(e) => setRole(e.target.value)} /> User
                         <input type='radio' name='Role' value= "Manager" 
                         onChange={(e) => setRole(e.target.value)}   /> Manager
                     </div>
-                    {role == "Manager" ? (
-            <div className="mb-3">
-              <label style ={{paddingTop : "10px", paddingRight : "10px"}}>Secret Key</label>  
-              <input
-               style ={{paddingTop : "10px", paddingRight : "10px"}} type="text"
-                className="form-control"
-                placeholder="Secret Key"
-                onChange={(e) => setSecretKey(e.target.value)}
-              />
-            </div>
-          ) : null}
+          
 
 <div className="mb-3">
-            <label style ={{paddingTop : "10px", paddingRight : "10px"}}>Name : </label>
-            <input style ={{marginBottom : "10px"}}
+            <label>Name : </label>
+            <input
               type="text"
               className="form-control"
               placeholder="name"
@@ -74,31 +73,33 @@ export default function SignUp () {
           </div>
 
           <div className="mb-3">
-            <label style ={{paddingTop : "10px", paddingRight : "10px"}}>Email address</label>
-            <input style ={{marginBottom : "10px"}}
+            <label>Email address</label><br/>
+            <input
               type="email"
               className="form-control"
               placeholder="Enter email"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
+           
 
           <div className="mb-3">
-            <label style ={{paddingTop : "10px", paddingRight : "10px"}}>Password : </label>
-            <input style ={{marginBottom : "10px"}}
-              type="password"
+            <label >Password : </label>
+            <input
+              type= {passwordType}
               className="form-control"
               placeholder="Enter password"
               onChange={(e) => setPassword(e.target.value)}
-            />
+            /> <label className="ShowPass"onClick={togglePassword}>
+            {passwordType === "password" ? <h4>Show Password</h4> : <h4>Hide Password</h4>}</label>
           </div>
                     <div className="d-grid">
-            <button type="submit" className="btn btn-primary">
+            <button  type="submit" className="btn1">
               Sign Up
             </button>
           </div>
           <p className="forgot-password text-right">
-            Already registered <a href="/sign-in">sign in?</a>
+            Already registered ?<a href="/sign-in">sign in</a>
           </p>
                 </form>
             </div>
