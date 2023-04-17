@@ -24,7 +24,7 @@ export default function SignUp () {
        
       
             console.log(name,email,password);
-            fetch("http://localhost:5000/createUser",{
+            fetch("https://task-managemetn.glitch.me/createUser",{
                 method:"POST",
                 crossDomain : true,
                 headers: {
